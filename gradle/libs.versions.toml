@@ -1,0 +1,63 @@
+[versions]
+agp = "8.3.0-alpha17"
+kotlin = "1.9.20"
+compose = "1.5.4"
+compose-compiler = "1.5.4"
+compose-material3 = "1.1.2"
+androidx-activityCompose = "1.8.0"
+ktor-version = "2.3.6"
+kermit = "2.0.1"
+kotest = "5.5.4"
+turbine = "0.13.0"
+io-insert-koin-core-version = "3.5.0"
+org-jetbrains-kotlinx-datetime-version = "0.4.1"
+org-jetbrains-kotlinx-coroutines-core-version = "1.7.3"
+
+[libraries]
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+io-ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor-version" }
+io-ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor-version"}
+io-ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor-version" }
+io-ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-version" }
+io-ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor-version" }
+io-ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor-version" }
+io-ktor-client-resources = { module = "io.ktor:ktor-client-resources", version.ref = "ktor-version" }
+io-ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
+io-ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor-version" }
+touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json" , version.ref = "kotlin"}
+io-insert-koin-android = { module = "io.insert-koin:koin-android", version.ref = "io-insert-koin-core-version" }
+io-insert-koin-core = { module = "io.insert-koin:koin-core", version.ref = "io-insert-koin-core-version" }
+io-insert-koin-test = { module = "io.insert-koin:koin-test", version.ref = "io-insert-koin-core-version" }
+io-insert-koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "io-insert-koin-core-version" }
+org-jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "org-jetbrains-kotlinx-datetime-version" }
+org-jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
+org-jetbrains-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
+org-jetbrains-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
+
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+[bundles]
+ktor = [
+    "io-ktor-client-core",
+    "io-ktor-client-resources",
+    "io-ktor-client-logging",
+    "io-ktor-client-content-negotiation",
+    "io-ktor-serialization-kotlinx-json",
+    "io-ktor-client-auth",
+]
