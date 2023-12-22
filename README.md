@@ -1,4 +1,4 @@
-# PeopleInSpace
+# Multiplatform Ktor Repository Module
 
 ![kotlin-version](https://img.shields.io/badge/kotlin-1.9.20-blue)
 
@@ -12,8 +12,6 @@ space and also the position of the International Space Station (inspired by http
 
 The project is included as sample in the official [Kotlin Multiplatform Mobile docs](https://kotlinlang.org/docs/mobile/samples.html#peopleinspace) and also the [Google Dev Library](https://devlibrary.withgoogle.com/products/android)
 
-
-
 ### Building
 
 ### Compose for Web client (JS)
@@ -21,16 +19,9 @@ The project is included as sample in the official [Kotlin Multiplatform Mobile d
 The Compose for Web client resides in the `compose-web` module and can be run by
 invoking `./gradlew :compose-web:jsBrowserDevelopmentRun`
 
-
 ### Compose for iOS client
 
 TODO
-
-### Backend code
-
-
-
-
 
 ### Screenshots
 
