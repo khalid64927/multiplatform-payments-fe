@@ -4,16 +4,22 @@ kotlin = "1.9.20"
 compose = "1.5.4"
 compose-compiler = "1.5.4"
 compose-material3 = "1.1.2"
-androidx-activityCompose = "1.8.0"
+androidx-activityCompose = "1.8.2"
+kotlinStyled = "5.2.1-pre.146-kotlin-1.4.30"
 ktor-version = "2.3.6"
-kermit = "2.0.1"
+kermit = "2.0.2"
 kotest = "5.5.4"
-turbine = "0.13.0"
+turbine = "1.0.0"
 io-insert-koin-core-version = "3.5.0"
-org-jetbrains-kotlinx-datetime-version = "0.4.1"
+org-jetbrains-kotlinx-datetime-version = "0.5.0"
 org-jetbrains-kotlinx-coroutines-core-version = "1.7.3"
+kotlinReact = "17.0.2-pre.201-kotlin-1.5.0"
+kotlinReactRouterDom = "5.2.0-pre.201-kotlin-1.5.0"
+kotlinStyledVersion = "5.3.0-pre.201-kotlin-1.5.0"
+petuska = "3.4.1"
 
 [libraries]
+kotlin-js = { module = "org.jetbrains.kotlin:kotlin-stdlib-js" , version.ref = "kotlin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
@@ -30,6 +36,7 @@ io-ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "
 io-ktor-client-resources = { module = "io.ktor:ktor-client-resources", version.ref = "ktor-version" }
 io-ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
 io-ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor-version" }
+io-ktor-client-js = { group = "io.ktor", name = "ktor-client-js", version.ref = "ktor-version" }
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
@@ -42,6 +49,11 @@ org-jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datet
 org-jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
 org-jetbrains-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
 org-jetbrains-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
+kotlin-react = { module = "org.jetbrains.kotlin-wrappers:kotlin-react", version.ref = "kotlinReact" }
+kotlin-react-dom = { module = "org.jetbrains.kotlin-wrappers:kotlin-react-dom", version.ref = "kotlinReact" }
+kotlin-react-router-dom = { module = "org.jetbrains.kotlin-wrappers:kotlin-react-router-dom", version.ref = "kotlinReactRouterDom" }
+kotlin-styled = { module = "org.jetbrains.kotlin-wrappers:kotlin-styled", version.ref = "kotlinStyledVersion" }
+
 
 
 [plugins]
@@ -51,6 +63,7 @@ kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+npmPublish = { id = "dev.petuska.npm.publish", version.ref = "petuska"}
 
 [bundles]
 ktor = [
