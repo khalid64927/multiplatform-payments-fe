@@ -11,7 +11,7 @@ This Project provides Repository Layers that uses Ktor under the hood to provide
 be used in Web, iOS and Android platforms
 
 
-### **Building
+### Building
 
 # Kotlin JS + React for Web client (JS)
 To exercise (React based) web client run `./gradlew :web:browserDevelopmentRun`.
