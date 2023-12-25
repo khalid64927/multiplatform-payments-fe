@@ -21,8 +21,10 @@ val App = functionalComponent<RProps> {
 
         mainScope.launch {
             console.log(" functionalComponent :: mainScope :: launch ")
-            val hardcodedAuth = "Basic SkJFTHh5a2dNR0FqSlZ3SGpmcVRBaTRXV2V3YmdjTU86R2g2MzUwMVA1VHFCR3VadQ=="
-            repository?.authenticate(RequestConfig("api.uat3.test.aws.singtel.com/api/sg/v1/oauth/token", headerMap = mapOf("Authorization" to hardcodedAuth)))
+            // TODO: make api call with repository
+            /**
+             * repository.authenticate()
+             * */
             console.log(" authenticate ")
         }
         return@useEffectWithCleanup { mainScope.cancel() }

@@ -25,11 +25,7 @@ import kotlinx.serialization.json.Json
 
 object BuildKonfig {
     var FLAVOR = "debug"
-    /**
-     * UAT : api.uat3.test.aws.singtel.com
-     * prod: www.api.singtel.com
-    */
-    var HOST = "api.uat3.test.aws.singtel.com"
+    var HOST = ""
     var clientId: String = ""
     var clientSecret: String = ""
 }
@@ -94,13 +90,21 @@ class PaymentClientConfig {
 }
 
 
-val uatPinsMap: Map<String, Set<String>> = mapOf(
-    "api.uat3.test.aws.singtel.com" to  setOf(
-        "sha256/yevOlLVhW6H9Zco95gQsObqRDLvXfssMBvAFYQvjUrk=",
-        "sha256/q+/wkbAp7eqw63n/j5nXubRRmg1kkl4uJ2mY3n3FHa0=",
-        "sha256/cGuxAXyFXFkWm61cF4HPWX8S0srS9j0aSqN0k4AP+4A=")
-)
+/**
+ * mapOf(
+ *     "api.uat3.test.aws.company.com" to  setOf(
+ *         "sha256/dummy")
+ * )
+ * */
+// TODO:
+val uatPinsMap: Map<String, Set<String>> = emptyMap()
 
-val productionPinsMap: Map<String, Set<String>> = mapOf(
-    "api.aws.singtel.com" to  setOf("sha256/++AAA=======================================")
-)
+
+/**
+ * mapOf(
+ *     "api.aws.company.com" to  setOf(
+ *         "sha256/dummy")
+ * )
+ * */
+// TODO:
+val productionPinsMap: Map<String, Set<String>> = emptyMap()

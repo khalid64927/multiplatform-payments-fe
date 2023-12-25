@@ -5,23 +5,30 @@
 **Kotlin Multiplatform** project with SwiftUI, Jetpack Compose, Compose for Wear OS, Compose for Desktop, Compose for Web, and Kotlin/JS + React clients along with Ktor backend. Currently running on
 * Android (Jetpack Compose)
 * iOS (Compose for iOS - experimental support!)
-* Web (Kotlin/JS + React Wrapper) (contributed by https://github.com/PatilShreyas)
+* Web (Kotlin/JS + React Wrapper)
 
-It makes use of [Open Notify PeopleInSpace API](http://open-notify.org/Open-Notify-API/People-In-Space/) to show list of people currently in
-space and also the position of the International Space Station (inspired by https://kousenit.org/2019/12/19/a-few-astronomical-examples-in-kotlin/)!
+This Project provides Repository Layers that uses Ktor under the hood to provide networking and can
+be used in Web, iOS and Android platforms
 
-The project is included as sample in the official [Kotlin Multiplatform Mobile docs](https://kotlinlang.org/docs/mobile/samples.html#peopleinspace) and also the [Google Dev Library](https://devlibrary.withgoogle.com/products/android)
 
 ### Building
 
-### Compose for Web client (JS)
+### Kotlin JS + React for Web client (JS)
 To exercise (React based) web client run `./gradlew :web:browserDevelopmentRun`.
+
+For packaging run below command './gradlew :web:packJsPackages'
+output will be in shared/build/packages/shared-unspecified.tgz file (not yet figured how to name
+file correctly the "unspecified").
+
 
 ### Compose for iOS client
 
 TODO
 
 ### Screenshots
+Web demo
+![plot](./assets/screenshots/web-api-success.png)
+
 
 TODO
 
