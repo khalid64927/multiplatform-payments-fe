@@ -23,6 +23,8 @@ import kotlinx.serialization.json.Json
 import com.demo.payments.data.config.Result.Failure
 import com.demo.payments.data.config.Result.Success
 import com.demo.payments.data.config.Result
+import com.demo.payments.utils.Routes
+import com.demo.payments.utils.getBasicAuth
 
 class PaymentsRepositoryImpl(
     private val httpClient: HttpClient,
@@ -36,13 +38,14 @@ class PaymentsRepositoryImpl(
             contentType(ContentType.Application.FormUrlEncoded)
             method = HttpMethod.Post
             url {
-                appendPathSegments("/api/sg/v1/oauth/token")
+                appendPathSegments(Routes.AUTH)
             }
             headers {
                 for ((key, value) in config.headerMap) {
                     append(key, value)
                 }
                 append(HttpHeaders.ContentType, "application/x-www-form-urlencoded")
+                append(HttpHeaders.Authorization, getBasicAuth())
             }
             body =
                 TextContent("grant_type=client_credentials", ContentType.Application.FormUrlEncoded)

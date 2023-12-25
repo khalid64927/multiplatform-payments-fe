@@ -8,5 +8,8 @@ import kotlin.js.json
 data class RequestConfigJs<T>(val urlPath: String,
                               val resource: Any? = null,
                               val postBodyJson: T? = null,
-                              val headerMap: Json = json(),
-                              val postBody: Json = json())
+                              val headerJson: Json = json(),
+                              val postBody: Json = json()) {
+
+
+}

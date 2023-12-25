@@ -1,8 +1,8 @@
 package com.demo.payments.di
 
-import com.demo.payments.data.config.BuildKonfig
-import com.demo.payments.data.config.productionPinsMap
-import com.demo.payments.data.config.uatPinsMap
+import com.demo.payments.data.BuildKonfig
+import com.demo.payments.data.productionPinsMap
+import com.demo.payments.data.uatPinsMap
 import io.ktor.client.engine.darwin.Darwin
 import io.ktor.client.engine.darwin.certificates.CertificatePinner
 

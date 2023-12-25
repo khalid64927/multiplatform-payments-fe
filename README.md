@@ -15,9 +15,7 @@ The project is included as sample in the official [Kotlin Multiplatform Mobile d
 ### Building
 
 ### Compose for Web client (JS)
-
-The Compose for Web client resides in the `compose-web` module and can be run by
-invoking `./gradlew :compose-web:jsBrowserDevelopmentRun`
+To exercise (React based) web client run `./gradlew :web:browserDevelopmentRun`.
 
 ### Compose for iOS client
 

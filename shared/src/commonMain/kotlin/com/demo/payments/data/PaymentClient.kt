@@ -1,4 +1,4 @@
-package com.demo.payments.data.config
+package com.demo.payments.data
 
 import com.demo.payments.models.dto.RemoteException
 import com.demo.payments.models.dto.RemoteExceptionType
@@ -24,9 +24,17 @@ import kotlinx.serialization.json.Json
 
 
 object BuildKonfig {
-    const val FLAVOR = "debug"
-    const val HOST = "api.uat3.test.aws.singtel.com"
+    var FLAVOR = "debug"
+    /**
+     * UAT : api.uat3.test.aws.singtel.com
+     * prod: www.api.singtel.com
+    */
+    var HOST = "api.uat3.test.aws.singtel.com"
+    var clientId: String = ""
+    var clientSecret: String = ""
 }
+
+data class AppConfig(val host: String, val clientId: String, val clientSecret: String)
 
 class PaymentClientConfig {
     fun createPrepaidHttpClient(

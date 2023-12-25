@@ -4,7 +4,7 @@ import kotlin.js.ExperimentalJsExport
 import kotlin.js.JsExport
 
 @OptIn(ExperimentalJsExport::class)
-@JsExport
+@JsExport.Ignore
 data class RequestConfig<T>(
     val urlPath: String,
     val resource: Any? = null,

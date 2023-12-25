@@ -1,8 +1,12 @@
-package com.demo.payments.data.config
+package com.demo.payments.data
 
+import com.demo.payments.data.config.AppData
+import com.demo.payments.data.config.RequestConfig
+import com.demo.payments.data.config.Result
 import com.demo.payments.data.repository.PaymentsRepository
 import com.demo.payments.models.dto.RemoteException
 import com.demo.payments.models.dto.RemoteExceptionType
+import com.demo.payments.utils.getBasicAuth
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngine
@@ -101,7 +105,7 @@ val AuthPlugin = createClientPlugin(name = "AuthPlugin", ::AuthPluginConfig) {
                     // Handle Forbidden (status code 403)
                     withContext(Dispatchers.Main){
                         println("reAuth")
-                        val hardcodedAuth = "Basic SkJFTHh5a2dNR0FqSlZ3SGpmcVRBaTRXV2V3YmdjTU86R2g2MzUwMVA1VHFCR3VadQ=="
+                        val hardcodedAuth = getBasicAuth()
                         val result = pluginConfig.repository.authenticate(
                             RequestConfig(
                                 headerMap = mapOf(HttpHeaders.Authorization to hardcodedAuth),
