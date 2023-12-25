@@ -13,6 +13,7 @@ class DemoApp: Application() {
         initKoin ({
             androidLogger()
             modules(androidAppModule)
+            // TODO provide valid host, clientID and clientSecret
         }, AppConfig("", "", ""))
     }
 }

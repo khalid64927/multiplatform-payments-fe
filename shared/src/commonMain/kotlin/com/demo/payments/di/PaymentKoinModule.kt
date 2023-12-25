@@ -24,6 +24,7 @@ fun initKoin(
     appDeclaration: KoinAppDeclaration = {},
     appConfig: AppConfig
 ) = startKoin {
+    validate(appConfig)
     appConfig.run {
         BuildKonfig.HOST = host
         BuildKonfig.FLAVOR = ""
@@ -34,6 +35,16 @@ fun initKoin(
     modules(
         prepaidDataModule,
     )
+}
+
+fun validate(appConfig: AppConfig){
+    appConfig.run {
+        if(host.trim().isEmpty() || clientId.trim().isEmpty() || clientSecret.trim().isEmpty()){
+            throw IllegalStateException(" host or clientId or clientSecret is empty or blank in AppConfig.\n" +
+                    "Please provide all these values!")
+        }
+    }
+
 }
 
 val prepaidDataModule = module {
