@@ -1,8 +1,10 @@
 package com.demo.payments.context
 
+import com.demo.payments.data.AppConfig
 import com.demo.payments.data.repository.PaymentsJsRepository
-import com.demo.payments.di.appModule
+import com.demo.payments.data.repository.PaymentsRepository
 import com.demo.payments.di.initKoin
+import com.demo.payments.di.jsAppModule
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import react.createContext
@@ -10,13 +12,16 @@ import react.createContext
 
 @OptIn(ExperimentalJsExport::class)
 @JsExport
-object AppDependencies: KoinComponent {
-    val repository: PaymentsJsRepository
+class AppDependencies(appConfig: AppConfig) : KoinComponent {
+    var repository: PaymentsRepository?
+    var repositoryJs: PaymentsJsRepository?
+
     init {
-        initKoin {
-            appModule
-        }
+        initKoin({
+            modules(jsAppModule)
+        }, appConfig)
         repository = get()
+        repositoryJs = get()
     }
 }
 

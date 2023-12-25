@@ -1,4 +1,4 @@
-package com.demo.payments.data.config
+package com.demo.payments.data
 
 import com.demo.payments.models.dto.RemoteException
 import com.demo.payments.models.dto.RemoteExceptionType
@@ -24,9 +24,13 @@ import kotlinx.serialization.json.Json
 
 
 object BuildKonfig {
-    const val FLAVOR = "debug"
-    const val HOST = "api.uat3.test.aws.singtel.com"
+    var FLAVOR = "debug"
+    var HOST = ""
+    var clientId: String = ""
+    var clientSecret: String = ""
 }
+
+data class AppConfig(val host: String, val clientId: String, val clientSecret: String)
 
 class PaymentClientConfig {
     fun createPrepaidHttpClient(
@@ -86,13 +90,21 @@ class PaymentClientConfig {
 }
 
 
-val uatPinsMap: Map<String, Set<String>> = mapOf(
-    "api.uat3.test.aws.singtel.com" to  setOf(
-        "sha256/yevOlLVhW6H9Zco95gQsObqRDLvXfssMBvAFYQvjUrk=",
-        "sha256/q+/wkbAp7eqw63n/j5nXubRRmg1kkl4uJ2mY3n3FHa0=",
-        "sha256/cGuxAXyFXFkWm61cF4HPWX8S0srS9j0aSqN0k4AP+4A=")
-)
+/**
+ * mapOf(
+ *     "api.uat3.test.aws.company.com" to  setOf(
+ *         "sha256/dummy")
+ * )
+ * */
+// TODO:
+val uatPinsMap: Map<String, Set<String>> = emptyMap()
 
-val productionPinsMap: Map<String, Set<String>> = mapOf(
-    "api.aws.singtel.com" to  setOf("sha256/++AAA=======================================")
-)
+
+/**
+ * mapOf(
+ *     "api.aws.company.com" to  setOf(
+ *         "sha256/dummy")
+ * )
+ * */
+// TODO:
+val productionPinsMap: Map<String, Set<String>> = emptyMap()
