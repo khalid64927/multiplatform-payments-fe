@@ -15,15 +15,17 @@ class PaymentsJsRepositoryImpl(private val paymentsRepository: PaymentsRepositor
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun authenticate(config: RequestConfig<AuthenticateRequest>): Promise<AuthenticateResponse> {
-
         return Promise { resolve, reject ->
             GlobalScope.promise {
+
                 return@promise paymentsRepository.authenticate(config)
             }.then {
                 it.onSuccess(resolve).onFailure(reject)
             }
         }
     }
+
+
 }
 
 @JsExport

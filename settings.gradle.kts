@@ -31,3 +31,4 @@ dependencyResolutionManagement {
 rootProject.name = "multiplatform-payments-fe"
 include(":androidApp")
 include(":shared")
+include(":web")
