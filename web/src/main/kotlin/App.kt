@@ -1,5 +1,7 @@
 import com.demo.payments.context.AppDependenciesContext
 import com.demo.payments.data.config.RequestConfig
+import com.demo.payments.data.config.onFailure
+import com.demo.payments.data.config.onSuccess
 import components.*
 import components.materialui.AppBar
 import components.materialui.Grid
@@ -21,10 +23,11 @@ val App = functionalComponent<RProps> {
 
         mainScope.launch {
             console.log(" functionalComponent :: mainScope :: launch ")
-            // TODO: make api call with repository
-            /**
-             * repository.authenticate()
-             * */
+            repository.authenticate(RequestConfig()).onSuccess {
+                console.log(" success $it")
+            }.onFailure {
+                console.log(" onFailure $it")
+            }
             console.log(" authenticate ")
         }
         return@useEffectWithCleanup { mainScope.cancel() }
@@ -35,7 +38,7 @@ val App = functionalComponent<RProps> {
                 margin(0.px)
             }
             Toolbar {
-                Typography("h6", "People In Space")
+                Typography("h6", "Multiplatform Repository Layer")
             }
         }
 

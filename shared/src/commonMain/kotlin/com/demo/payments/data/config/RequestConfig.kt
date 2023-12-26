@@ -4,9 +4,9 @@ import kotlin.js.ExperimentalJsExport
 import kotlin.js.JsExport
 
 @OptIn(ExperimentalJsExport::class)
-@JsExport.Ignore
+@JsExport
 data class RequestConfig<T>(
-    val urlPath: String,
+    val urlPath: String? = null,
     val resource: Any? = null,
     val postBodyJson: T? = null,
     val headerMap: Map<String, String> = emptyMap(),

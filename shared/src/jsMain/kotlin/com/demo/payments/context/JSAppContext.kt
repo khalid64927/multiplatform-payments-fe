@@ -13,8 +13,8 @@ import react.createContext
 @OptIn(ExperimentalJsExport::class)
 @JsExport
 class AppDependencies(appConfig: AppConfig) : KoinComponent {
-    var repository: PaymentsRepository?
-    var repositoryJs: PaymentsJsRepository?
+    val repository: PaymentsRepository
+    val repositoryJs: PaymentsJsRepository
 
     init {
         initKoin({

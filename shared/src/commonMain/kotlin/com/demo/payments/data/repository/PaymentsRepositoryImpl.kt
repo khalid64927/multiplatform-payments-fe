@@ -23,6 +23,7 @@ import kotlinx.serialization.json.Json
 import com.demo.payments.data.config.Result.Failure
 import com.demo.payments.data.config.Result.Success
 import com.demo.payments.data.config.Result
+import com.demo.payments.di.baseLogger
 import com.demo.payments.utils.Routes
 import com.demo.payments.utils.getBasicAuth
 
@@ -30,6 +31,8 @@ class PaymentsRepositoryImpl(
     private val httpClient: HttpClient,
     private val authClient: HttpClient,
     ): PaymentsRepository {
+
+        val ktorTag = "PaymentsRepositoryImpl"
 
 
     @OptIn(InternalAPI::class)
@@ -44,8 +47,11 @@ class PaymentsRepositoryImpl(
                 for ((key, value) in config.headerMap) {
                     append(key, value)
                 }
-                append(HttpHeaders.ContentType, "application/x-www-form-urlencoded")
                 append(HttpHeaders.Authorization, getBasicAuth())
+                append(HttpHeaders.ContentType, "application/x-www-form-urlencoded")
+            }
+            for (( key, value) in headers.entries()){
+                baseLogger.withTag(ktorTag).d("Headers: key=$key value=$value")
             }
             body =
                 TextContent("grant_type=client_credentials", ContentType.Application.FormUrlEncoded)

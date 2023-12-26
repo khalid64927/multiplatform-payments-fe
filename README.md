@@ -16,7 +16,7 @@ be used in Web, iOS and Android platforms
 ## Kotlin JS + React for Web client (JS)
 To exercise (React based) web client run `./gradlew :web:browserDevelopmentRun`.
 
-For packaging run below command './gradlew :web:packJsPackages'
+For packaging run below command './gradlew shared:packJsPackage'
 output will be in shared/build/packages/shared-unspecified.tgz file (not yet figured how to name
 file correctly the "unspecified").
 

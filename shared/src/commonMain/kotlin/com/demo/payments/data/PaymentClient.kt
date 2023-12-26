@@ -21,6 +21,7 @@ import io.ktor.http.URLProtocol
 import io.ktor.serialization.JsonConvertException
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import kotlin.js.JsExport
 
 
 object BuildKonfig {
@@ -30,6 +31,7 @@ object BuildKonfig {
     var clientSecret: String = ""
 }
 
+@JsExport
 data class AppConfig(val host: String, val clientId: String, val clientSecret: String)
 
 class PaymentClientConfig {

@@ -27,7 +27,7 @@ fun initKoin(
     validate(appConfig)
     appConfig.run {
         BuildKonfig.HOST = host
-        BuildKonfig.FLAVOR = ""
+        BuildKonfig.FLAVOR = "debug"
         BuildKonfig.clientId = clientId
         BuildKonfig.clientSecret = clientSecret
     }
