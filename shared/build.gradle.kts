@@ -1,3 +1,5 @@
+import dev.petuska.npm.publish.extension.domain.NpmAccess
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
@@ -31,6 +33,8 @@ kotlin {
     }
 
     js(IR) {
+        version = "1.0.0-alpha01"
+        moduleName = "kmp-repository-module"
         binaries.library()
         useCommonJs()
         browser()
@@ -114,6 +118,18 @@ kotlin {
 
 
 }
+
+npmPublish {
+    organization = "khalid-kmp"
+    access = NpmAccess.PUBLIC
+    registries {
+        register("npmjs") {
+            uri.set("https://registry.npmjs.org")
+            authToken.set(System.getenv("GITHUB_NPMTOKEN"))
+        }
+    }
+}
+
 
 android {
     namespace = "com.demo.payments.app"
