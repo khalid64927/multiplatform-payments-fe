@@ -9,7 +9,10 @@ import react.dom.render
 fun main() {
     render(kotlinx.browser.document.getElementById("root")) {
         // TODO provide valid host, clientID and clientSecret
-        val appConfig = AppConfig(host = "", clientId = " ", clientSecret = "")
+        val appConfig = AppConfig(
+            host = "",
+            clientId = "",
+            clientSecret = "")
         AppDependenciesContext.Provider(AppDependencies(appConfig)) {
             child(App)
         }

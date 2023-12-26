@@ -11,32 +11,37 @@ This Project provides Repository Layers that uses Ktor under the hood to provide
 be used in Web, iOS and Android platforms
 
 
-### Building
+# Building
 
-### Kotlin JS + React for Web client (JS)
+## Kotlin JS + React for Web client (JS)
 To exercise (React based) web client run `./gradlew :web:browserDevelopmentRun`.
 
-For packaging run below command './gradlew :web:packJsPackages'
+For packaging run below command './gradlew shared:packJsPackage'
 output will be in shared/build/packages/shared-unspecified.tgz file (not yet figured how to name
 file correctly the "unspecified").
 
 
-### Compose for iOS client
-
+## Compose for iOS client
 TODO
 
-### Screenshots
-Web demo
+## Android (Jetpack Compose)
+TODO
+
+# Demo Screenshots
+# iOS demo
+TODO
+
+## Android demo
+TODO
+
+## Web App (Kotlin/JS + React) Demo
+run the app with command `./gradlew :web:browserDevelopmentRun`
+
+App will open your default web browser and load the page.
+Now open Web Developer tools and observe console logs you should see as below for successful
+authenticate call (remember to provide AppConfig values)
+
 ![plot](./assets/screenshots/web-api-success.png)
-
-
-TODO
-
-**Android (Jetpack Compose)**
-TODO
-
-**Web App (Kotlin/JS + React)**
-TODO
 
 
 ### Languages, libraries and tools used
