@@ -1,5 +1,4 @@
 import com.demo.payments.context.AppDependenciesContext
-import com.demo.payments.data.config.RequestConfig
 import com.demo.payments.data.config.onFailure
 import com.demo.payments.data.config.onSuccess
 import components.*
@@ -7,6 +6,7 @@ import components.materialui.AppBar
 import components.materialui.Grid
 import components.materialui.Toolbar
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.css.margin
 import kotlinx.css.px
 import react.*
@@ -16,17 +16,18 @@ import styled.css
 @InternalCoroutinesApi
 val App = functionalComponent<RProps> {
     val appDependencies = useContext(AppDependenciesContext)
-    var repository = appDependencies.repository
+    var interactor = appDependencies.apiGeeInteractor
 
     useEffectWithCleanup(dependencies = listOf()) {
         val mainScope = MainScope()
-
         mainScope.launch {
             console.log(" functionalComponent :: mainScope :: launch ")
-            repository.authenticate(RequestConfig()).onSuccess {
+            interactor.invoke().collectLatest {
+                it.onSuccess {
                 console.log(" success $it")
-            }.onFailure {
+                }.onFailure {
                 console.log(" onFailure $it")
+                }
             }
             console.log(" authenticate ")
         }
