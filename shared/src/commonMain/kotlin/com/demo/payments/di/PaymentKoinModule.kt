@@ -10,6 +10,8 @@ import com.demo.payments.data.BuildKonfig
 import com.demo.payments.data.PaymentClientConfig
 import com.demo.payments.data.repository.PaymentsRepository
 import com.demo.payments.data.repository.PaymentsRepositoryImpl
+import com.demo.payments.domain.interactor.apigee.ApiGeeInteractor
+import com.demo.payments.domain.interactor.apigee.ApiGeeInteractorImpl
 import io.ktor.client.HttpClient
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -34,7 +36,17 @@ fun initKoin(
     appDeclaration()
     modules(
         prepaidDataModule,
+        prepaidDomainModule
     )
+}
+
+val prepaidDomainModule = module {
+    factory<ApiGeeInteractor> { ApiGeeInteractorImpl(
+        appData = get(),
+        repository = get(),
+        log = getWith<Logger>("Interactor").
+    withTag("ApiGeeInteractor"))
+    }
 }
 
 fun validate(appConfig: AppConfig){
@@ -44,11 +56,9 @@ fun validate(appConfig: AppConfig){
                     "Please provide all these values!")
         }
     }
-
 }
 
 val prepaidDataModule = module {
-
     factory { (tag: String? ) -> if (tag != null) baseLogger.withTag(tag) else baseLogger }
 
     // This client is used authenticating with apigee
@@ -58,7 +68,7 @@ val prepaidDataModule = module {
             httpClientEngine = get(),
             log = getWith<Logger>(
                 "Prepaid-Ktor").
-            withTag("Prepaid-Ktor-Client")
+            withTag("Payments-Ktor-Client")
         )
     }
 
@@ -76,6 +86,9 @@ val prepaidDataModule = module {
         PaymentsRepositoryImpl(
             httpClient = get( qualifier = named("paymentsClient")),
             authClient = get( qualifier = named("authClient")),
+            log = getWith<Logger>(
+                "Repository").
+            withTag("PaymentsRepository")
         )
     }
 

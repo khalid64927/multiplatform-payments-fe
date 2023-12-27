@@ -13,7 +13,6 @@ import io.ktor.client.request.headers
 import io.ktor.client.request.request
 import io.ktor.content.TextContent
 import io.ktor.http.ContentType
-import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
 import io.ktor.http.appendPathSegments
 import io.ktor.http.contentType
@@ -24,16 +23,14 @@ import com.demo.payments.data.config.Result.Failure
 import com.demo.payments.data.config.Result.Success
 import com.demo.payments.data.config.Result
 import com.demo.payments.di.baseLogger
-import com.demo.payments.utils.Routes
-import com.demo.payments.utils.getBasicAuth
 
 class PaymentsRepositoryImpl(
     private val httpClient: HttpClient,
     private val authClient: HttpClient,
+    private val log: co.touchlab.kermit.Logger,
     ): PaymentsRepository {
 
-        val ktorTag = "PaymentsRepositoryImpl"
-
+    val ktorTag = "PaymentsRepositoryImpl"
 
     @OptIn(InternalAPI::class)
     override suspend fun authenticate(config: RequestConfig<AuthenticateRequest>): Result<AuthenticateResponse> {
@@ -41,17 +38,13 @@ class PaymentsRepositoryImpl(
             contentType(ContentType.Application.FormUrlEncoded)
             method = HttpMethod.Post
             url {
-                appendPathSegments(Routes.AUTH)
+                appendPathSegments(config.urlPath)
             }
             headers {
                 for ((key, value) in config.headerMap) {
+                    baseLogger.withTag(ktorTag).d("Headers: key=$key value=$value")
                     append(key, value)
                 }
-                append(HttpHeaders.Authorization, getBasicAuth())
-                append(HttpHeaders.ContentType, "application/x-www-form-urlencoded")
-            }
-            for (( key, value) in headers.entries()){
-                baseLogger.withTag(ktorTag).d("Headers: key=$key value=$value")
             }
             body =
                 TextContent("grant_type=client_credentials", ContentType.Application.FormUrlEncoded)
@@ -65,12 +58,12 @@ class PaymentsRepositoryImpl(
         var result: Result<T> = Failure(Exception("Something went wrong !"))
         runCatching {
             httpResponse = request { block() }
-            println("httpResponse is initialised")
+            log.d("httpResponse is initialised")
             val response = httpResponse?.body() as T
-            println("safeRequest end $response")
+            log.d("safeRequest end $response")
             result = Success(response)
         }.onFailure {
-            println("safeRequest request completed")
+            log.d("safeRequest request completed")
             var errorDto = httpResponse?.getErrorDto()
             result = Failure(
                 ApiException(
