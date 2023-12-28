@@ -10,6 +10,7 @@
 !/.idea/codeStyles/*
 !/.idea/inspectionProfiles/*
 /build
+shared/build
 /buildSrc/build
 /captures
 .externalNativeBuild
