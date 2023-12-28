@@ -20,9 +20,6 @@ dependencies {
     // Material Design Components for React
     implementation(npm("@material-ui/core", "4.11.1"))
 
-    // ReactJS Maps
-    implementation(npm("pigeon-maps", "0.19.6"))
-
     implementation(projects.shared)
 }
 

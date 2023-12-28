@@ -2530,11 +2530,6 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.3.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
-pigeon-maps@0.19.6:
-  version "0.19.6"
-  resolved "https://registry.yarnpkg.com/pigeon-maps/-/pigeon-maps-0.19.6.tgz#4b50ba694258bc1a632e1948aa3c64236ca9b134"
-  integrity sha512-RKvhhEZtZr0CXdw6CANG5GB58kGTD35OSv+rAuAybD63ZP+AFtpRXEdzEpvPB6U+cGVEoMcDWmvptKQM7q9ILQ==
-
 pkg-dir@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-4.2.0.tgz#f099133df7ede422e81d1d8448270eeb3e4261f3"
