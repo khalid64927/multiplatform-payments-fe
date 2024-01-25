@@ -1,7 +1,7 @@
 package com.demo.payments.app
 
 import android.app.Application
-import com.demo.payments.data.AppConfig
+import com.demo.payments.data.AppBuildParams
 import com.demo.payments.di.androidAppModule
 import com.demo.payments.di.initKoin
 import org.koin.android.ext.koin.androidLogger
@@ -14,6 +14,6 @@ class DemoApp: Application() {
             androidLogger()
             modules(androidAppModule)
             // TODO provide valid host, clientID and clientSecret
-        }, AppConfig("", "", ""))
+        }, AppBuildParams("", "", ""))
     }
 }

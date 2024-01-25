@@ -24,15 +24,23 @@ import kotlinx.serialization.json.Json
 import kotlin.js.JsExport
 
 
-object BuildKonfig {
+@JsExport
+object AppConfig {
     var FLAVOR = "debug"
-    var HOST = ""
+    var host = ""
     var clientId: String = ""
     var clientSecret: String = ""
+    var accessToken: String = ""
 }
 
+/*Simple data class to enforce build parameters*/
 @JsExport
-data class AppConfig(val host: String, val clientId: String, val clientSecret: String)
+data class AppBuildParams(
+    val host: String,
+    val clientId: String,
+    val clientSecret: String,
+    val accessToken: String = "",
+)
 
 class PaymentClientConfig {
     fun createPrepaidHttpClient(
@@ -54,7 +62,7 @@ class PaymentClientConfig {
         exceptionHandling()
         install(Logging) {
             level = LogLevel.ALL
-            logger = if (BuildKonfig.FLAVOR.isNotEmpty()) {
+            logger = if (AppConfig.FLAVOR.isNotEmpty()) {
                 object : Logger {
                     override fun log(message: String) {
                         log.i {message}
@@ -67,7 +75,7 @@ class PaymentClientConfig {
         }
         defaultRequest {
             url {
-                host = BuildKonfig.HOST
+                host = AppConfig.host
                 protocol = URLProtocol.HTTPS
             }
 

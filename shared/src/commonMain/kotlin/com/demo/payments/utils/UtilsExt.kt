@@ -1,13 +1,13 @@
 package com.demo.payments.utils
 
-import com.demo.payments.data.BuildKonfig
+import com.demo.payments.data.AppConfig
 import io.ktor.util.encodeBase64
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 fun getBasicAuth(): String{
-    val clientId = BuildKonfig.clientId
-    val clientSecret = BuildKonfig.clientSecret
+    val clientId = AppConfig.clientId
+    val clientSecret = AppConfig.clientSecret
     val base64Credential = "$clientId:$clientSecret".encodeBase64()
     return "Basic $base64Credential"
 }

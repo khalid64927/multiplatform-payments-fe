@@ -1,13 +1,13 @@
 package com.demo.payments.data.config
 
+import com.demo.payments.data.AppConfig
 import io.ktor.http.HttpHeaders
-import kotlin.js.ExperimentalJsExport
 import kotlin.js.JsExport
 
-@OptIn(ExperimentalJsExport::class)
 @JsExport
 data class RequestConfig<T>(
     val urlPath: String = "",
+    val baseUrl: String = AppConfig.host,
     val resource: Any? = null,
     val postBodyJson: T? = null,
     val headerMap: Map<String, String> = emptyMap(),
@@ -18,5 +18,14 @@ data class RequestConfig<T>(
         val AUTH_CONTENT_TYPE = mutableMapOf(
             HttpHeaders.ContentType to "application/x-www-form-urlencoded")
     }
-
 }
+
+
+@JsExport
+data class JSRequestConfig(
+    val pathSegment: String,
+    val baseUrl: String = AppConfig.host,
+    var method: String,
+    val postBodyJson: String = "",
+    val headerMap: Map<String, String> = emptyMap(),
+)

@@ -1,27 +1,24 @@
 package com.demo.payments.context
 
 import com.demo.payments.data.AppBuildParams
-import com.demo.payments.data.repository.JsCoreRepository
 import com.demo.payments.di.initKoin
 import com.demo.payments.di.jsAppModule
+import com.demo.payments.domain.interactor.apigee.ApiGeeInteractor
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import react.createContext
 
+/*This Context is for Kotlin JS Apps*/
+class KotlinJSAppDependencies(buildParams: AppBuildParams) : KoinComponent {
 
-/*This Context is for JS Apps*/
-@JsExport
-class JsAppDependencies(buildParams: AppBuildParams) : KoinComponent {
-
-    val repository: JsCoreRepository
+    val apiGeeInteractor: ApiGeeInteractor
 
     init {
         initKoin({
             modules(jsAppModule)
         }, buildParams)
-        repository = get()
+        apiGeeInteractor = get()
     }
 }
 
-@JsExport
-val JSAppDependenciesContext = createContext<JsAppDependencies>()
+val KotlinJSAppDependenciesContext = createContext<KotlinJSAppDependencies>()

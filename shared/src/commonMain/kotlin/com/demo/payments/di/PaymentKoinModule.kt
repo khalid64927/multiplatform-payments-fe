@@ -3,10 +3,9 @@ package com.demo.payments.di
 import co.touchlab.kermit.Logger
 import co.touchlab.kermit.StaticConfig
 import co.touchlab.kermit.platformLogWriter
+import com.demo.payments.data.AppBuildParams
 import com.demo.payments.data.AppConfig
-import com.demo.payments.data.config.AppData
 import com.demo.payments.data.AuthClientConfig
-import com.demo.payments.data.BuildKonfig
 import com.demo.payments.data.PaymentClientConfig
 import com.demo.payments.data.repository.PaymentsRepository
 import com.demo.payments.data.repository.PaymentsRepositoryImpl
@@ -24,14 +23,15 @@ import org.koin.dsl.module
 
 fun initKoin(
     appDeclaration: KoinAppDeclaration = {},
-    appConfig: AppConfig
+    buildParams: AppBuildParams
 ) = startKoin {
-    validate(appConfig)
-    appConfig.run {
-        BuildKonfig.HOST = host
-        BuildKonfig.FLAVOR = "debug"
-        BuildKonfig.clientId = clientId
-        BuildKonfig.clientSecret = clientSecret
+    validate(buildParams)
+    // save build params in app config object
+    buildParams.run {
+        AppConfig.FLAVOR = "debug"
+        AppConfig.host = host
+        AppConfig.clientId = clientId
+        AppConfig.clientSecret = clientSecret
     }
     appDeclaration()
     modules(
@@ -42,17 +42,16 @@ fun initKoin(
 
 val prepaidDomainModule = module {
     factory<ApiGeeInteractor> { ApiGeeInteractorImpl(
-        appData = get(),
         repository = get(),
         log = getWith<Logger>("Interactor").
     withTag("ApiGeeInteractor"))
     }
 }
 
-fun validate(appConfig: AppConfig){
-    appConfig.run {
+fun validate(buildParams: AppBuildParams){
+    buildParams.run {
         if(host.trim().isEmpty() || clientId.trim().isEmpty() || clientSecret.trim().isEmpty()){
-            throw IllegalStateException(" host or clientId or clientSecret is empty or blank in AppConfig.\n" +
+            throw IllegalStateException("Either or all configs (host or clientId or clientSecret) are not set !.\n" +
                     "Please provide all these values!")
         }
     }
@@ -82,7 +81,8 @@ val prepaidDataModule = module {
             withTag("Payments-Ktor-Client")
         )
     }
-    val data = single<PaymentsRepository> {
+
+    single<PaymentsRepository> {
         PaymentsRepositoryImpl(
             httpClient = get( qualifier = named("paymentsClient")),
             authClient = get( qualifier = named("authClient")),
@@ -91,8 +91,6 @@ val prepaidDataModule = module {
             withTag("PaymentsRepository")
         )
     }
-
-    single { AppData() }
 }
 
 // platformLogWriter() is a relatively simple config option, useful for local debugging. For production
@@ -101,7 +99,7 @@ val prepaidDataModule = module {
 // See https://github.com/touchlab/Kermit
 val baseLogger = Logger(config = StaticConfig(logWriterList = listOf(platformLogWriter())), "PaymentsLog")
 
-internal inline fun <reified T> Scope.getWith(vararg params: Any?): T {
+inline fun <reified T> Scope.getWith(vararg params: Any?): T {
     return get(parameters = { parametersOf(*params) })
 }
 

@@ -1,4 +1,4 @@
-import com.demo.payments.context.AppDependenciesContext
+import com.demo.payments.context.KotlinJSAppDependenciesContext
 import com.demo.payments.data.config.onFailure
 import com.demo.payments.data.config.onSuccess
 import components.*
@@ -15,7 +15,7 @@ import styled.css
 
 @InternalCoroutinesApi
 val App = functionalComponent<RProps> {
-    val appDependencies = useContext(AppDependenciesContext)
+    val appDependencies = useContext(KotlinJSAppDependenciesContext)
     var interactor = appDependencies.apiGeeInteractor
 
     useEffectWithCleanup(dependencies = listOf()) {

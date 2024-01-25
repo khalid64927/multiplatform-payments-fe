@@ -49,11 +49,11 @@ If this data is given Repo layer will take care to token generation and expiry.
 Use AppDependenciesContext and provide necessary data to Library
 
 ```kotlin
-val appConfig = AppConfig(
+val buildParams = AppBuildParams(
             host = "",
             clientId = "",
             clientSecret = "")
-        AppDependenciesContext.Provider(AppDependencies(appConfig)) {
+        AppDependenciesContext.Provider(AppDependencies(buildParams)) {
             child(App)
         }
 ```
@@ -65,7 +65,7 @@ initKoin ({
             androidLogger()
             modules(androidAppModule)
             // TODO provide valid host, clientID and clientSecret
-        }, AppConfig("", "", ""))
+        }, AppBuildParams("", "", ""))
 
 ```
 # iOS
@@ -126,7 +126,7 @@ run below command to see demo JS app
 ```
 App will open your default web browser and load the page.
 Now open Web Developer tools and observe console logs you should see as below for successful
-authenticate call (remember to provide AppConfig values)
+authenticate call (remember to provide AppBuildParams values)
 
 ![plot](./assets/screenshots/web-api-success.png)
 

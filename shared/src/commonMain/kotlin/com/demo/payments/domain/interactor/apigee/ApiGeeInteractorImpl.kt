@@ -1,6 +1,6 @@
 package com.demo.payments.domain.interactor.apigee
 
-import com.demo.payments.data.config.AppData
+import com.demo.payments.data.AppConfig
 import com.demo.payments.data.config.RequestConfig
 import com.demo.payments.data.config.Result
 import com.demo.payments.data.config.onFailure
@@ -16,7 +16,6 @@ import kotlinx.coroutines.flow.flow
 
 
 class ApiGeeInteractorImpl(
-    private val appData: AppData,
     private val repository: PaymentsRepository,
     private val log: co.touchlab.kermit.Logger,
 ): ApiGeeInteractor {
@@ -30,7 +29,7 @@ class ApiGeeInteractorImpl(
         repository.authenticate(configuration).
         onSuccess {
             log.d("onSuccess $it")
-            appData.accessToken = it.accessToken
+            AppConfig.accessToken = it.accessToken
             emit(Result.Success(it))
         }.onFailure {
             log.d("onFailure $it")

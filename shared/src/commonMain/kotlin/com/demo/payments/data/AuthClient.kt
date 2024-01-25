@@ -1,6 +1,5 @@
 package com.demo.payments.data
 
-import com.demo.payments.data.config.AppData
 import com.demo.payments.data.config.RequestConfig
 import com.demo.payments.data.config.Result
 import com.demo.payments.data.repository.PaymentsRepository
@@ -52,7 +51,7 @@ class AuthClientConfig {
         exceptionHandling()
         install(Logging) {
             level = LogLevel.ALL
-            logger = if (BuildKonfig.FLAVOR.isNotEmpty()) {
+            logger = if (AppConfig.FLAVOR.isNotEmpty()) {
                 object : Logger {
                     override fun log(message: String) {
                         log.i {message}
@@ -64,7 +63,7 @@ class AuthClientConfig {
         }
         defaultRequest {
             url {
-                host = BuildKonfig.HOST
+                host = AppConfig.host
                 protocol = URLProtocol.HTTPS
             }
 
@@ -88,8 +87,8 @@ class AuthClientConfig {
 
 val AuthPlugin = createClientPlugin(name = "AuthPlugin", ::AuthPluginConfig) {
     on(Send) { request ->
-        if(pluginConfig.appData.accessToken.isNotEmpty()) {
-            request.headers.append("Authorization", "Bearer ${pluginConfig.appData.accessToken}")
+        if(AppConfig.accessToken.isNotEmpty()) {
+            request.headers.append("Authorization", "Bearer ${AppConfig.accessToken}")
         }
         var originalCall = proceed(request)
         originalCall.response.request.url
@@ -97,7 +96,7 @@ val AuthPlugin = createClientPlugin(name = "AuthPlugin", ::AuthPluginConfig) {
             println("response :: ${this.status.value}")
             when(status.value) {
                 400, 401, 403 -> {
-                    if(pluginConfig.appData.accessToken.isNotEmpty()) {
+                    if(AppConfig.accessToken.isNotEmpty()) {
                         println("accessToken is available")
                         return@on originalCall
                     }
@@ -113,8 +112,8 @@ val AuthPlugin = createClientPlugin(name = "AuthPlugin", ::AuthPluginConfig) {
                             )
                         )
                         if(result is Result.Success) {
-                            pluginConfig.appData.accessToken = result.data.accessToken
-                            request.headers.append("Authorization", "Bearer ${pluginConfig.appData.accessToken}")
+                            AppConfig.accessToken = result.data.accessToken
+                            request.headers.append("Authorization", "Bearer ${AppConfig.accessToken}")
                             originalCall = proceed(request)
                         }
                     }
@@ -130,7 +129,6 @@ val AuthPlugin = createClientPlugin(name = "AuthPlugin", ::AuthPluginConfig) {
 }
 
 class AuthPluginConfig: KoinComponent {
-    val appData: AppData by inject()
     val repository: PaymentsRepository by inject()
 
 }

@@ -33,11 +33,12 @@ kotlin {
     }
 
     js(IR) {
-        version = "1.0.0-alpha01"
+        version = "1.0.0-alpha02"
         moduleName = "kmp-repository-module"
         binaries.library()
         useCommonJs()
         browser()
+        useEsModules()
         generateTypeScriptDefinitions()
     }
     
@@ -88,6 +89,7 @@ kotlin {
                 implementation(libs.org.jetbrains.kotlinx.coroutines.test)
                 implementation(libs.kotest.assertions)
                 implementation(libs.turbine)
+                implementation(libs.io.ktor.client.mock)
             }
         }
 
