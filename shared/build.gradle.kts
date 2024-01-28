@@ -1,4 +1,5 @@
 import dev.petuska.npm.publish.extension.domain.NpmAccess
+import org.jetbrains.kotlin.gradle.targets.js.npm.fromSrcPackageJson
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -33,8 +34,10 @@ kotlin {
     }
 
     js(IR) {
-        version = "1.0.0-alpha02"
+        version = "1.0.0-alpha03"
         moduleName = "kmp-repository-module"
+        description = "This is a Multiplatform library that provide repository api to making rest " +
+                "api calls using Ktor for iOS, Android and Web platforms"
         binaries.library()
         useCommonJs()
         browser()

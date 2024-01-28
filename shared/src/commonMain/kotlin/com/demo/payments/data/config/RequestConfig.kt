@@ -1,10 +1,8 @@
 package com.demo.payments.data.config
 
 import com.demo.payments.data.AppConfig
-import io.ktor.http.HttpHeaders
 import kotlin.js.JsExport
 
-@JsExport
 data class RequestConfig<T>(
     val urlPath: String = "",
     val baseUrl: String = AppConfig.host,
@@ -12,20 +10,51 @@ data class RequestConfig<T>(
     val postBodyJson: T? = null,
     val headerMap: Map<String, String> = emptyMap(),
     val postBody: Map<String, String> = emptyMap(),
-) {
-
-    companion object {
-        val AUTH_CONTENT_TYPE = mutableMapOf(
-            HttpHeaders.ContentType to "application/x-www-form-urlencoded")
-    }
-}
+)
 
 
 @JsExport
 data class JSRequestConfig(
+    /*
+    * Provide path segment
+    * example:
+    *
+    * "payment/v1/balance"
+    * */
     val pathSegment: String,
+
+    /*
+    * Provide base url
+    *
+    * example:
+    * "api.aws.company.com"
+    * Note protocol (HTTP/HTTPS) is added by default
+    * */
     val baseUrl: String = AppConfig.host,
+
+    /*
+    * Provide method type
+    * example:
+    * GET, POST, PUT, DELETE
+    * */
     var method: String,
+    /*
+    * Provide Json string for body json string
+    * example:
+    * {
+    *   "deviceId": "abc",
+    *   "platform": "android"
+    * }
+    * */
     val postBodyJson: String = "",
-    val headerMap: Map<String, String> = emptyMap(),
+
+    /*
+    * Provide header as Json string
+    * example:
+    * {
+    *   "deviceId": "abc",
+    *   "platform": "android"
+    * }
+    * */
+    val headerJsonString: String = "{}",
 )
